@@ -11,7 +11,8 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" add all your plugins here
+" add all your plugins here (note older versions of Vundle
+" used Bundle instead of Plugin)
 
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
@@ -27,16 +28,20 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'arcticicestudio/nord-vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'vim-gitgutter'
+" Plugin 'jnurmine/Zenburn'
+Plugin 'altercation/vim-colors-solarized'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-
 filetype plugin indent on    " required
 
 " set space as leader key
 let mapleader = "\<Space>"
 
-" set cursor line
+" set cursorline
 set cursorline
 
 " specify areas where splits (:sp for horizontal and :vs for vertical) should occur
@@ -49,8 +54,15 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" set write to both :w and :W
+" set write to both :W and :w
 map :W :w
+
+" search highlight
+set hlsearch
+
+" clear highlighting on escape in normal mode
+nnoremap <esc> :noh<return><esc>
+nnoremap <esc>^[ <esc>^[
 
 " Enable folding
 set foldmethod=indent
@@ -91,21 +103,32 @@ set encoding=utf-8
 " set line numbers
 set number
 
+"python with virtualenv support
+py3 << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
 " make code look pretty ^______^
 let python_highlight_all=1
 syntax on
 
-" for correct color display in tmux
+" set background to dark so vim displays right colors in tmux
 set background=dark
 
 syntax enable
-colorscheme fahrenheit
 colorscheme farout
+colorscheme fahrenheit
+colorscheme nord
+colorscheme gruvbox
 
 " nord italics 
 let g:nord_italic = 1
 let g:nord_italic = 1
-
 
 " hide .pyc files
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
@@ -118,3 +141,6 @@ map <C-n> :NERDTreeToggle<CR>
 
 " close vim if only window left open is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" NerdCommenter -> don't follow indentation 
+let g:NERDDefaultAlign = 'left'

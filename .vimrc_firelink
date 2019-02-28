@@ -5,6 +5,9 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
@@ -45,6 +48,12 @@ set cursorline
 set splitbelow
 set splitright
 
+" split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 " set write to both :W and :w
 map :W :w
 
@@ -54,12 +63,6 @@ set hlsearch
 " clear highlighting on escape in normal mode
 nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
-
-" split navigations
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 
 " Enable folding
 set foldmethod=indent
@@ -72,7 +75,6 @@ nnoremap <space> za
 let g:SimpylFold_docstring_preview=1
 
 " set YouCompleteMe to correct python version
-"let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_server_python_interpreter = '/home/barry/miniconda3/bin/python3'
 
 " close autocomplete window when done
@@ -115,30 +117,18 @@ EOF
 let python_highlight_all=1
 syntax on
 
-" logic which scheme to use based on VIM mode???
-" if has('gui_running')
-"   set background=light
-"   colorscheme solarized
-" else
-"   colorscheme zenburn
-" endif
-
-" toggle between light and dark scheme
-" call togglebg#map("<F5>")
-"
 " set background to dark so vim displays right colors in tmux
 set background=dark
 
 syntax enable
 colorscheme farout
-colorscheme nord
 colorscheme fahrenheit
+colorscheme nord
 colorscheme gruvbox
 
 " nord italics 
 let g:nord_italic = 1
 let g:nord_italic = 1
-
 
 " hide .pyc files
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
