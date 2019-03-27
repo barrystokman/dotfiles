@@ -58,6 +58,9 @@ map :W :w
 " search highlight
 set hlsearch
 
+" set incremental search
+set incsearch
+
 " clear highlighting on escape in normal mode
 nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
