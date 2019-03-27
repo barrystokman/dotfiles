@@ -76,6 +76,8 @@ let g:SimpylFold_docstring_preview=1
 
 if hostname() == "Lothric"
    let g:ycm_server_python_interpreter = '/home/barry/miniconda3/bin/python3'
+elseif hostname() == "hasta.scilifelab.se"
+   let g:ycm_server_python_interpreter = '/home/proj/bin/conda/bin/python3'
 elseif hostname() == "Firelink"
    let g:ycm_server_python_interpreter = '/usr/local/bin/python3'
 endif
