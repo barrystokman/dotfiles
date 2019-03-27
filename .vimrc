@@ -30,6 +30,7 @@ Plugin 'morhetz/gruvbox'
 Plugin 'vim-gitgutter'
 " Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'jiangmiao/auto-pairs'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
