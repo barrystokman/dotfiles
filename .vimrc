@@ -29,6 +29,7 @@ Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'arcticicestudio/nord-vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'vim-gitgutter'
+Plugin 'tpope/vim-markdown'
 " Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'jiangmiao/auto-pairs'
