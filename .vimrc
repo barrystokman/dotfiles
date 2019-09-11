@@ -24,7 +24,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/unimpaired'
+"Plugin 'tpope/unimpaired'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'arcticicestudio/nord-vim'
 Plugin 'morhetz/gruvbox'
