@@ -33,6 +33,8 @@ Plugin 'tpope/vim-markdown'
 " Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'inkarkat/vim-SyntaxRange'
+Plugin 'inkarkat/vim-ingo-library'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -48,11 +50,19 @@ set cursorline
 set splitbelow
 set splitright
 
-" split navigations
+" split navigations using Ctrl-h/j/k/l
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" Cycle through buffers using Ctrl-Shift-j and Ctrl-Shift-k
+"nnoremap <M-J> :bprev<CR>
+"nnoremap <M-K> :bnext<CR>
+
+" Cycle through tabs using Ctrl-Shift-h and Ctrl-Shift-l
+"nnoremap <M-H> :tabprevious<CR>
+"nnoremap <M-L> :tabnext<CR>
 
 " set write to both :W and :w
 map :W :w
@@ -156,3 +166,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " NerdCommenter -> don't follow indentation 
 let g:NERDDefaultAlign = 'left'
+
+" corrections and typing shortcuts
+:iabbrev bp() import ipdb;ipdb.set_trace()
