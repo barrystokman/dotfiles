@@ -56,13 +56,13 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" Cycle through buffers using Ctrl-Shift-j and Ctrl-Shift-k
-"nnoremap <M-J> :bprev<CR>
-"nnoremap <M-K> :bnext<CR>
+" Cycle through buffers using <leader>j/k
+nnoremap <leader>j :bprev<CR>
+nnoremap <leader>k :bnext<CR>
 
-" Cycle through tabs using Ctrl-Shift-h and Ctrl-Shift-l
-"nnoremap <M-H> :tabprevious<CR>
-"nnoremap <M-L> :tabnext<CR>
+" Cycle through tabs using <leader>h/l
+nnoremap <leader>h :tabprevious<CR>
+nnoremap <leader>l :tabnext<CR>
 
 " set write to both :W and :w
 map :W :w
