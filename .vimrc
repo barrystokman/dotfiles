@@ -56,13 +56,15 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" Cycle through buffers using <leader>j/k
-nnoremap <leader>j :bprev<CR>
-nnoremap <leader>k :bnext<CR>
-
-" Cycle through tabs using <leader>h/l
-nnoremap <leader>h :tabprevious<CR>
-nnoremap <leader>l :tabnext<CR>
+" buffer switching
+" With the following in your vimrc, you can switch to the next buffer by pressing F8,
+" or the previous buffer by pressing Shift-F8. If the target buffer is already
+" displayed in a window in one of the tabs, that window will be displayed. Otherwise,
+" the current window will be split, and the target buffer will be displayed in the new window.
+" If you prefer to open a new tab instead of a new split window, you can set switchbuf to usetab,newtab.
+set switchbuf=usetab
+nnoremap <F8> :sbnext<CR>
+nnoremap <S-F8> :sbprevious<CR>
 
 " set write to both :W and :w
 map :W :w
