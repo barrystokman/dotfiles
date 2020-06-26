@@ -1,0 +1,174 @@
+set nocompatible              " required
+filetype off                  " required
+set hidden
+set showtabline=0
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" add all your plugins here (note older versions of Vundle
+" used Bundle instead of Plugin)
+
+" ------------------*** Plugins   ***---------------------------------------"
+" ------------------*** Confirmed ***---------------------------------------"
+Plugin 'scrooloose/nerdtree'                " Project and file navigation
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'Xuyuanp/nerdtree-git-plugin'        " NerdTree git functionality
+Plugin 'vim-ctrlspace/vim-ctrlspace'        " Tabs/Buffers/Fuzzy/Workspaces/Bookmarks
+Plugin 'vim-airline/vim-airline'            " Lean & mean status/tabline for vim
+Plugin 'vim-airline/vim-airline-themes'     " Themes for airline
+Plugin 'Valloric/YouCompleteMe'             " Code Completion
+Plugin 'vim-syntastic/syntastic'            " Syntax Checking
+Plugin 'nvie/vim-flake8'                    " Linting
+Plugin 'vim-gitgutter'                      " Shows a git diff sign in the sign column
+Plugin 'morhetz/gruvbox'                    " Gruvbox color scheme
+Plugin 'jiangmiao/auto-pairs'               " auto pairs brackets
+Plugin 'tpope/vim-surround'                 " Parentheses, brackets, quotes, XML tags, and more
+Plugin 'tpope/vim-fugitive'                 " git integration 
+"Plugin 'tmhedberg/SimpylFold'               " Code folding
+Plugin 'ryanoasis/vim-devicons'             " Dev Icons
+" ------------------*** Unconfirmed ***---------------------------------------"
+"Plugin 'vim-scripts/indentpython.vim'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'klen/python-mode'                   " Python mode (docs, refactor, lints...)
+Plugin 'hynek/vim-python-pep8-indent'
+"Plugin 'inkarkat/vim-SyntaxRange'
+"Plugin 'inkarkat/vim-ingo-library'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" ------------------------------------------------------------------------------------------------"
+" *** General Settings o7 ***
+" ------------------------------------------------------------------------------------------------"
+let mapleader = "\<Space>"                                     " set space as leader key
+set cursorline                                                 " set cursorline
+set encoding=utf-8                                             " set utf-8 encoding
+set number                                                     " set line numbers
+set incsearch                                                  " set incremental search
+set hlsearch                                                   " search highlight
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+
+" specify areas where splits (:sp for horizontal and :vs for vertical) should occur
+set splitbelow
+set splitright
+
+" split navigations using Ctrl-h/j/k/l
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+
+" clear highlighting on escape in normal mode
+nnoremap <esc> :noh<return><esc>
+nnoremap <esc>^[ <esc>^[
+
+" buffer switching
+" With the following in your vimrc, you can switch to the next buffer by pressing F8,
+" or the previous buffer by pressing Shift-F8. If the target buffer is already
+" displayed in a window in one of the tabs, that window will be displayed. Otherwise,
+" the current window will be split, and the target buffer will be displayed in the new window.
+" If you prefer to open a new tab instead of a new split window, you can set switchbuf to usetab,newtab.
+set switchbuf=usetab,newtab
+nnoremap <F8> :sbnext<CR>
+nnoremap <S-F8> :sbprevious<CR>
+
+" set write to both :W and :w
+map :W :w
+
+let g:pymode_options_colorcolumn = 0
+
+" Enable folding with the spacebar
+"nnoremap <space> za
+
+" add proper PEP8 indentation
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=99 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+
+" show docstrings for folded code
+let g:SimpylFold_docstring_preview=1
+
+" set YouCompleteMe to correct python version, depending on machine
+" Firelink = private, Lothric = work
+
+if hostname() == "Lothric"
+   "let g:ycm_server_python_interpreter = '/home/barry/miniconda3/bin/python3'
+   let g:ycm_server_python_interpreter = '/home/barry/anaconda3/bin/python3'
+elseif hostname() == "hasta.scilifelab.se"
+   let g:ycm_server_python_interpreter = '/home/proj/bin/conda/bin/python3'
+elseif hostname() == "Firelink"
+   let g:ycm_server_python_interpreter = '/usr/local/bin/python3'
+endif
+
+" close autocomplete window when done
+let g:ycm_autoclose_preview_window_after_completion=1
+
+" shortcut for goto definition
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+
+" flag unnecessary whitespace
+highlight BadWhitespace ctermbg=red guibg=darkred
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+"python with virtualenv support
+py3 << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+" make code look pretty ^______^
+let python_highlight_all=1
+syntax on
+
+" set background to dark so vim displays right colors in tmux
+set background=dark
+
+syntax enable
+colorscheme gruvbox
+
+" nord italics
+let g:nord_italic = 1
+let g:nord_italic = 1
+
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+
+"=====================================================
+"" NERDTree settings
+"=====================================================
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let NERDTreeIgnore=['\.pyc$', '\~$']                          "ignore files in NERDTree
+
+set laststatus=2
+
+
+" NerdCommenter -> don't follow indentation
+let g:NERDDefaultAlign = 'left'
+
+"=====================================================
+"" AirLine settings
+"=====================================================
+let g:airline_theme='base16_gruvbox_dark_hard'                " set airline theme
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#formatter='unique_tail'
+let g:airline_powerline_fonts=1
